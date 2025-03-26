@@ -2,59 +2,30 @@ package toast
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/labstack/echo/v4"
 )
 
+type level string
+
 const (
-	INFO    = "info"
-	SUCCESS = "success"
-	WARNING = "warning"
-	DANGER  = "danger"
+	Info    level = "info"
+	Success level = "success"
+	Warning level = "warning"
+	Error   level = "error"
 )
 
-type Toast struct {
-	Level   string `json:"level"`
+type toast struct {
+	Level   level  `json:"level"`
 	Message string `json:"message"`
 }
 
-func New(level string, message string) Toast {
-	return Toast{level, message}
+func NewToast(level level, message string) *toast {
+	return &toast{Level: level, Message: message}
 }
 
-func Info(message string) Toast {
-	return New(INFO, message)
-}
-
-func Success(c echo.Context, message string) {
-	New(SUCCESS, message).SetHXTriggerHeader(c)
-}
-
-func Warning(message string) Toast {
-	return New(WARNING, message)
-}
-
-func Danger(message string) Toast {
-	return New(DANGER, message)
-}
-
-func (t Toast) Error() string {
-	return fmt.Sprintf("%s: %s", t.Level, t.Message)
-}
-
-func (t Toast) jsonify() (string, error) {
-	t.Message = t.Error()
-	eventMap := map[string]Toast{}
-	eventMap["makeToast"] = t
-	jsonData, err := json.Marshal(eventMap)
-	if err != nil {
-		return "", err
-	}
-
-	return string(jsonData), nil
-}
-
-func (t Toast) SetHXTriggerHeader(c echo.Context) {
-	jsonData, _ := t.jsonify()
-	c.Response().Header().Set("HX-Trigger", jsonData)
+// Send sends one or more toasts as an HX-Trigger event.
+func Send(ctx echo.Context, toasts ...toast) {
+	event := map[string][]toast{"makeToast": toasts}
+	jsonData, _ := json.Marshal(event)
+	ctx.Response().Header().Set("HX-Trigger", string(jsonData))
 }
