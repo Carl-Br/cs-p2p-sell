@@ -16,7 +16,7 @@ func main() {
 	passwordHandler := handler.PasswordHandler{}
 
 	app.GET("/", homeHandler.ShowHome)
-	app.GET("/password", passwordHandler.SnowPassword)
+	app.GET("/password", passwordHandler.ShowPassword)
 	app.POST("/password", passwordHandler.ValidatePassword)
 
 	port := os.Getenv("PORT")

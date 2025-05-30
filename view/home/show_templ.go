@@ -43,6 +43,18 @@ func ShowHome() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col\"><div class=\"flex space-x-4 relative\" x-data=\"{ activeTab: &#39;tab1&#39;, underlineWidth: 0, underlineOffset: 0 }\" x-init=\"\n                    // Initialize underline position\n                    $nextTick(() =&gt; {\n                        const activeBtn = $refs.tab1;\n                        underlineWidth = activeBtn.offsetWidth;\n                        underlineOffset = activeBtn.offsetLeft;\n                    })\n                \"><!-- Underline indicator --><div class=\"absolute bottom-0 h-0.5 bg-white transition-all duration-300 ease-out\" :style=\"`width: ${underlineWidth}px; transform: translateX(${underlineOffset}px);`\"></div><!-- Tab 1 --><button x-ref=\"tab1\" @click=\"\n                        activeTab = &#39;tab1&#39;;\n                        underlineWidth = $refs.tab1.offsetWidth;\n                        underlineOffset = $refs.tab1.offsetLeft;\n                    \" class=\"px-4 py-2 text-gray-300 hover:text-white transition-colors\" :class=\"{ &#39;text-white&#39;: activeTab === &#39;tab1&#39; }\">Not listed</button><!-- Tab 2 --><button x-ref=\"tab2\" @click=\"\n                        activeTab = &#39;tab2&#39;;\n                        underlineWidth = $refs.tab2.offsetWidth;\n                        underlineOffset = $refs.tab2.offsetLeft;\n                    \" class=\"px-4 py-2 text-gray-300 hover:text-white transition-colors\" :class=\"{ &#39;text-white&#39;: activeTab === &#39;tab2&#39; }\">Listed</button><!-- Tab 3 --><button x-ref=\"tab3\" @click=\"\n                        activeTab = &#39;tab3&#39;;\n                        underlineWidth = $refs.tab3.offsetWidth;\n                        underlineOffset = $refs.tab3.offsetLeft;\n                    \" class=\"px-4 py-2 text-gray-300 hover:text-white transition-colors\" :class=\"{ &#39;text-white&#39;: activeTab === &#39;tab3&#39; }\">Ignored</button></div><!-- Content below tabs --><div class=\"mt-4\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = showNotListed().Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			return nil
 		})
 		templ_7745c5c3_Err = layout.Base().Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)

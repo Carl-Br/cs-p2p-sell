@@ -175,7 +175,7 @@ func ShowEnterPassword() templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<form hx-post=\"/password\" hx-swap=\"outerHTML\"><div class=\"border-neutral-300 border-4 rounded-2xl w-72 h-56 flex flex-col justify-between items-center text-neutral-300 p-4\"><div class=\"flex flex-col justify-center items-center flex-grow\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<form hx-post=\"/password\" hx-swap=\"outerHTML\"><div class=\"border-neutral-300 border-2 rounded-2xl w-72 h-56 flex flex-col justify-between items-center text-neutral-300 p-4\"><div class=\"flex flex-col justify-center items-center flex-grow\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -1,0 +1,16 @@
+package home
+
+templ showNotListed() {
+	<div class="overflow-x-auto">
+		@notListedRow("https://community.fastly.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17PLfYQJD_9W7m5a0mvLwOq7c2DMBupQn2eqVotqkiwHiqhdlMmigJtOWJwE5Zw3X8wS-yea8jcDo7c7XiSw0g89L9us/360fx360f", "fullItemName", 0.123564321265, nil)
+	</div>
+}
+
+templ notListedRow(imgUrl string, fullItemName string, floatValue float64, stickerNames []string) {
+	<div class="border-neutral-300 border-2 rounded-2xl">
+		<img
+			src={ imgUrl }
+			alt="Image"
+		/>
+	</div>
+}

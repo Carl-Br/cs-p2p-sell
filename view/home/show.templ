@@ -4,5 +4,68 @@ import "cs-p2p-sell/view/layout"
 
 templ ShowHome() {
 	@layout.Base() {
+		<div class="flex flex-col">
+			<div
+				class="flex space-x-4 relative"
+				x-data="{ activeTab: 'tab1', underlineWidth: 0, underlineOffset: 0 }"
+				x-init="
+                    // Initialize underline position
+                    $nextTick(() => {
+                        const activeBtn = $refs.tab1;
+                        underlineWidth = activeBtn.offsetWidth;
+                        underlineOffset = activeBtn.offsetLeft;
+                    })
+                "
+			>
+				<!-- Underline indicator -->
+				<div
+					class="absolute bottom-0 h-0.5 bg-white transition-all duration-300 ease-out"
+					:style="`width: ${underlineWidth}px; transform: translateX(${underlineOffset}px);`"
+				></div>
+				<!-- Tab 1 -->
+				<button
+					x-ref="tab1"
+					@click="
+                        activeTab = 'tab1';
+                        underlineWidth = $refs.tab1.offsetWidth;
+                        underlineOffset = $refs.tab1.offsetLeft;
+                    "
+					class="px-4 py-2 text-gray-300 hover:text-white transition-colors"
+					:class="{ 'text-white': activeTab === 'tab1' }"
+				>
+					Not listed
+				</button>
+				<!-- Tab 2 -->
+				<button
+					x-ref="tab2"
+					@click="
+                        activeTab = 'tab2';
+                        underlineWidth = $refs.tab2.offsetWidth;
+                        underlineOffset = $refs.tab2.offsetLeft;
+                    "
+					class="px-4 py-2 text-gray-300 hover:text-white transition-colors"
+					:class="{ 'text-white': activeTab === 'tab2' }"
+				>
+					Listed
+				</button>
+				<!-- Tab 3 -->
+				<button
+					x-ref="tab3"
+					@click="
+                        activeTab = 'tab3';
+                        underlineWidth = $refs.tab3.offsetWidth;
+                        underlineOffset = $refs.tab3.offsetLeft;
+                    "
+					class="px-4 py-2 text-gray-300 hover:text-white transition-colors"
+					:class="{ 'text-white': activeTab === 'tab3' }"
+				>
+					Ignored
+				</button>
+			</div>
+			<!-- Content below tabs -->
+			<div class="mt-4">
+				@showNotListed()
+			</div>
+		</div>
 	}
 }

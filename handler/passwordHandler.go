@@ -8,7 +8,7 @@ import (
 
 type PasswordHandler struct{}
 
-func (*PasswordHandler) SnowPassword(ctx echo.Context) error {
+func (*PasswordHandler) ShowPassword(ctx echo.Context) error {
 	passwordSet := true
 	if passwordSet {
 		return render(ctx, password.ShowEnterPasswordPage())
